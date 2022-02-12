@@ -38,7 +38,6 @@
 #define UTF8_x  0xBA
 #define UTF8_z  0xBC
 
-
 char* concat(const char *s1, const char *s2);
 
 int main(int argc, char *argv[])
@@ -54,7 +53,7 @@ int main(int argc, char *argv[])
 
     if (fileIn)
     {
-    	    char *outputFileName = concat(argv[1], ".apl");
+        char *outputFileName = concat(argv[1], ".apl");
         FILE *fileOut = fopen(outputFileName, "w+");
         if (fileOut)
         {
