@@ -12,9 +12,9 @@ Example usage:
 will produce **document.txt.apl** file.
 
 
-### Dopus:
+### Dopus5 action:
 
-Execute as AmigaDOS command with path to source file **{f}**
+Execute as AmigaDOS command with path to source file **{f}**.
 Don't forget to add addictional flags:
 
 * CD ource
