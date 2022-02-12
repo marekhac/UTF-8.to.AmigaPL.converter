@@ -1,62 +1,61 @@
 #include <stdio.h>
 
-#define AMIGAPL_A 194
-#define AMIGAPL_C 202
-#define AMIGAPL_E 203
-#define AMIGAPL_L 206
-#define AMIGAPL_N 207
-#define AMIGAPL_O 211
-#define AMIGAPL_S 212
-#define AMIGAPL_X 218
-#define AMIGAPL_Z 219
-#define AMIGAPL_a 226
-#define AMIGAPL_c 234
-#define AMIGAPL_e 235
-#define AMIGAPL_l 238
-#define AMIGAPL_n 239
-#define AMIGAPL_o 243
-#define AMIGAPL_s 244
-#define AMIGAPL_x 250
-#define AMIGAPL_z 251
+#define AMIGAPL_A   194
+#define AMIGAPL_C   202
+#define AMIGAPL_E   203
+#define AMIGAPL_L   206
+#define AMIGAPL_N   207
+#define AMIGAPL_O   211
+#define AMIGAPL_S   212
+#define AMIGAPL_X   218
+#define AMIGAPL_Z   219
+#define AMIGAPL_a   226
+#define AMIGAPL_c   234
+#define AMIGAPL_e   235
+#define AMIGAPL_l   238
+#define AMIGAPL_n   239
+#define AMIGAPL_o   243
+#define AMIGAPL_s   244
+#define AMIGAPL_x   250
+#define AMIGAPL_z   251
 
-#define AMIGA_DOUBLE_QUOTATION_MARK 0x22
+#define UTF8_A  0x84
+#define UTF8_C  0x86
+#define UTF8_E  0x98
+#define UTF8_L  0x81
+#define UTF8_N  0x83
+#define UTF8_O  0x93
+#define UTF8_S  0x9A
+#define UTF8_X  0xB9
+#define UTF8_Z  0xBB
+#define UTF8_a  0x85
+#define UTF8_c  0x87
+#define UTF8_e  0x99
+#define UTF8_l  0x82
+#define UTF8_n  0x84
+#define UTF8_o  0xB3
+#define UTF8_s  0x9B
+#define UTF8_x  0xBA
+#define UTF8_z  0xBC
 
-#define UTF8_A 0x84
-#define UTF8_C 0x86
-#define UTF8_E 0x98
-#define UTF8_L 0x81
-#define UTF8_N 0x83
-#define UTF8_O 0x93
-#define UTF8_S 0x9A
-#define UTF8_X 0xB9
-#define UTF8_Z 0xBB
-#define UTF8_a 0x85
-#define UTF8_c 0x87
-#define UTF8_e 0x99
-#define UTF8_l 0x82
-#define UTF8_n 0x84
-#define UTF8_o 0xB3
-#define UTF8_s 0x9B
-#define UTF8_x 0xBA
-#define UTF8_z 0xBC
 
-#define UTF8_LEFT_DOUBLE_QUOTATION_MARK 0x9C
-#define UTF8_RIGHT_DOUBLE_QUOTATION_MARK 0x9E
-
+char* concat(const char *s1, const char *s2);
 
 int main(int argc, char *argv[])
 {
-    if (argc != 3)
+    FILE *fileIn = fopen(argv[1], "r");
+
+    if (argc != 2)
     {
         printf("Wrong number of parameters!\n");
-        printf("usage:\n %s UTF8txtInputFile AmigaPLtxtOutputFile\n", __PRG_FILE__);
+        printf("usage: UTF8-txt-input-file\n");
         return 0;
     }
 
-    FILE *fileIn = fopen(argv[1], "r");
     if (fileIn)
     {
-        FILE *fileOut = fopen(argv[2], "w+");
+    	    char *outputFileName = concat(argv[1], ".apl");
+        FILE *fileOut = fopen(outputFileName, "w+");
         if (fileOut)
         {
             int oneChar;
@@ -74,7 +73,7 @@ int main(int argc, char *argv[])
                             break;
                         switch(oneChar)
                         {
-                            case UTF8_O: // √ì
+                            case UTF8_O: // √
                                 fputc(AMIGAPL_O, fileOut);
                                 break;
                             case UTF8_o: // √≥
@@ -88,22 +87,22 @@ int main(int argc, char *argv[])
                             break;
                         switch(oneChar)
                         {
-                            case UTF8_A: // ƒÑ
+                            case UTF8_A: // ƒ
                                 fputc(AMIGAPL_A, fileOut);
                                 break;
-                            case UTF8_C: // ƒÜ
+                            case UTF8_C: // ƒ
                                 fputc(AMIGAPL_C, fileOut);
                                 break;
-                            case UTF8_E: // ƒò
+                            case UTF8_E: // ƒ
                                 fputc(AMIGAPL_E, fileOut);
                                 break;
-                            case UTF8_a: // ƒÖ
+                            case UTF8_a: // ƒ
                                 fputc(AMIGAPL_a, fileOut);
                                 break;
-                            case UTF8_c: // ƒá
+                            case UTF8_c: // ƒ
                                 fputc(AMIGAPL_c, fileOut);
                                 break;
-                            case UTF8_e: // ƒô
+                            case UTF8_e: // ƒ
                                 fputc(AMIGAPL_e, fileOut);
                                 break;
                         }
@@ -114,13 +113,13 @@ int main(int argc, char *argv[])
                             break;
                         switch(oneChar)
                         {
-                            case UTF8_L: // ≈Å
+                            case UTF8_L: // ≈
                                 fputc(AMIGAPL_L, fileOut);
                                 break;
-                            case UTF8_N: // ≈É
+                            case UTF8_N: // ≈
                                 fputc(AMIGAPL_N, fileOut);
                                 break;
-                            case UTF8_S: // ≈ö
+                            case UTF8_S: // ≈
                                 fputc(AMIGAPL_S, fileOut);
                                 break;
                             case UTF8_Z: // ≈ª
@@ -129,13 +128,13 @@ int main(int argc, char *argv[])
                             case UTF8_X: // ≈ª
                                 fputc(AMIGAPL_X, fileOut);
                                 break;
-                            case UTF8_l: // ≈Ç
+                            case UTF8_l: // ≈
                                 fputc(AMIGAPL_l, fileOut);
                                 break;
-                            case UTF8_n: // ≈Ñ
+                            case UTF8_n: // ≈
                                 fputc(AMIGAPL_n, fileOut);
                                 break;
-                            case UTF8_s: // ≈õ
+                            case UTF8_s: // ≈
                                 fputc(AMIGAPL_s, fileOut);
                                 break;
                             case UTF8_z: // ≈º
@@ -144,25 +143,6 @@ int main(int argc, char *argv[])
                             case UTF8_x: // ≈∫
                                 fputc(AMIGAPL_x, fileOut);
                                 break;
-                        }
-                        break;
-                    case 0xE2:
-                        oneChar = fgetc(fileIn);
-                        if (feof(fileIn))
-                            break;
-                        switch(oneChar)
-                        {
-                            case 0x80:
-                                oneChar = fgetc(fileIn);
-                                if (feof(fileIn))
-                                    break;
-                                switch(oneChar)
-                                {
-                                    case UTF8_LEFT_DOUBLE_QUOTATION_MARK:
-                                    case UTF8_RIGHT_DOUBLE_QUOTATION_MARK:
-                                        fputc(AMIGA_DOUBLE_QUOTATION_MARK, fileOut);
-                                        break;
-                                }
                         }
                         break;
                     default:
@@ -174,7 +154,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            printf("Open file '%s' failed!\n", argv[2]);
+            printf("Open file '%s' failed!\n", outputFileName);
         }
 
         fclose(fileIn);
@@ -185,4 +165,14 @@ int main(int argc, char *argv[])
     }
 
     return 0;
+}
+
+char* concat(const char *string1, const char *string2)
+{
+    char *result = (char *) malloc(strlen(string1) + strlen(string2) + 1);
+
+    strcpy(result, string1);
+    strcat(result, string2);
+
+    return result;
 }
