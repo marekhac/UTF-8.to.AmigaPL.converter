@@ -15,9 +15,9 @@ will produce **document.txt.apl** file.
 ### Dopus5 action:
 
 Execute as AmigaDOS command with path to source file **{f}**.
-Don't forget to add addictional flags:
+Don't forget to add additional flags:
 
-* CD ource
+* CD source
 * Rescan source
 
 ![how it works](dopus_conf.png)
